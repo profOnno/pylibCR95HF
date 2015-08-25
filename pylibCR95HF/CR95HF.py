@@ -35,15 +35,45 @@ def Select(request = 'ISO15693'):
 	return (res,strAnswer.value)
 
 def SendReceive(request= '260100'):
-	strAnswer= ctypes.create_string_buffer('\000',500)
+	strAnswer= ctypes.create_string_buffer('\000',50)
 	strRequest=c_char_p(request)
 	res=cr95hf._Z21CR95HFlib_SendReceivePcS_(strRequest,strAnswer)
 	return (res,strAnswer.value)
+
+def Read_Block(block=0):
+	strAnswer= ctypes.create_string_buffer('\000',50)
+	strRequest=c_uint(block)
+	res=cr95hf._Z20CR95HFlib_Read_BlockiPh(strRequest,strAnswer)
+	return (res,strAnswer.value)
+
+def Write_Block(block, data):
+	strAnswer= ctypes.create_string_buffer('\000',50)
+	strData= ctypes.create_string_buffer('\000',50)
+	strRequest=c_uint(block)
+	res=cr95hf._Z21CR95HFlib_Write_BlockiPhS_(strRequest,strAnswer,strData)
+	return (res,strAnswer.value)
+
 
 def FieldOff():
 	strAnswer= ctypes.create_string_buffer('\000',50)
 	res=cr95hf._Z18CR95HFlib_FieldOffPc(strAnswer)
 	return (res,strAnswer.value)
+
+def ResetSPI():
+	strAnswer= ctypes.create_string_buffer('\000',50)
+	res=cr95hf._Z18CR95HFlib_ResetSPIPc(strAnswer)
+	return (res,strAnswer.value);
+
+def SendIRQPulse():
+	strAnswer= ctypes.create_string_buffer('\000',50)
+	res=cr95hf._Z22CR95HFlib_SendIRQPulsePc(strAnswer)
+	return (res,strAnswer.value);
+
+def SendNSSPulse():
+	strAnswer= ctypes.create_string_buffer('\000',50)
+	res=cr95hf._Z22CR95HFlib_SendNSSPulsePc(strAnswer)
+	return (res,strAnswer.value);
+
 
 def STCmd(request='010202010D'):
 	strAnswer= ctypes.create_string_buffer('\000',50)

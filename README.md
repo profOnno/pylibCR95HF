@@ -10,6 +10,7 @@ Didn't find license agreement for STMicroelectronics
 
 remember the permissions of the hid device
 50-something sets default hid device rules... so make sure your rule rulez...>50
+Read_Block and Write_Block functions don't @myplace (use STCmd)
 
 ###other things
 to get the symbols from the libCR95HF.so
