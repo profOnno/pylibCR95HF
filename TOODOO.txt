@@ -1,0 +1,1 @@
+check stringbuffer size on ctypes(bufferoverflow and such).
